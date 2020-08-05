@@ -1,0 +1,25 @@
+.themes-list {
+  height: 100vh;
+  width: 25%;
+  min-width: 200px;
+  max-width: 300px;
+  color: #e2e2e2;
+  font-family: 'Roboto Slab', serif;
+  background: #3c3d50;
+  list-style: none;
+  padding: 0;
+}
+
+.logo {
+  margin: 15%;
+}
+
+.theme {
+  padding-left: 15%;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.theme_active {
+  background: cadetblue
+}

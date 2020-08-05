@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import AppHeader from '../app-header/app-header';
 import SearchPanel from '../search-panel/search-panel';
 import MessageList from '../message-list/message-list';
-
+import ThemesList from '../ThemesList/ThemesList';
 import ItemAddForm from '../item-add-form/item-add-form';
 
 
@@ -14,12 +14,17 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createNewItem('Drink Coffee'),
-      this.createNewItem('Make Awesome App'),
-      this.createNewItem('Have a lunch'),
+      {
+        label: 'Drink Coffee', id: this.maxId++, authorId: '345tgkd', authorName: 'Алёша', date: '20 июля 2020 16:38'
+      },
+      {
+        label: 'Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome App', id: this.maxId++, authorId: '768fghz', authorName: 'Саша', date: '20 июля 2020 16:38'
+      },
+      {
+        label: 'Have a lunch', id: this.maxId++, authorId: '345tgkd', authorName: 'Алёша', date: '20 июля 2020 16:38'
+      },      
     ],
-    searchWord: '',
-    filter: 'all' //! active all done
+    searchWord: '',    
   }; 
 
   createNewItem (label){
@@ -45,24 +50,7 @@ export default class App extends Component {
         todoData: newArr
       }
     });    
-  }
-  toggleProperty(id, arr, propName){
-    const ind = arr.findIndex(el => el.id === id);
-      const oldItem = arr[ind];
-      const newItem = {...oldItem, [propName]: !oldItem[propName]}
-
-      return  [
-          ...arr.slice(0, ind), newItem, ...arr.slice(ind+1)
-        ]
-      
-  }
-  onToggleImportant = (id) => {
-    this.setState(({todoData})=>{
-      return {
-        todoData: this.toggleProperty(id, todoData, 'important')
-      }      
-      })    
-    }
+  }  
 
   search(arr, word){
     if(word.length === 0){
@@ -73,31 +61,17 @@ export default class App extends Component {
   onSearchInput = (word) => {
     this.setState({searchWord: word})
   }
-  filter(arr, filter){
-    switch(filter){
-      case 'all':
-        return arr;
-      case 'active':
-        return arr.filter(el=>!el.done);        
-      case 'done':
-        return arr.filter(el=>el.done);
-        default:
-        return arr; 
-    }
-  }
-  onFilterClick = (name) => {    
-    this.setState({filter: name})
-  }
+ 
   
 
-render(){
-  const countDone = this.state.todoData.filter(el=>el.done).length;
-  const countTodo = this.state.todoData.length - countDone;
-  const visibleItems = this.filter(this.search(this.state.todoData, this.state.searchWord), this.state.filter)
+render(){  
+  const visibleItems = this.search(this.state.todoData, this.state.searchWord);
 
   return (
+    <>
+    <ThemesList />    
     <div className="messenger-app">
-      <AppHeader toDo={countTodo} done={countDone} />
+      <AppHeader  />
       <div className="top-panel d-flex">
         <SearchPanel onSearchInput={this.onSearchInput}/>
         
@@ -110,6 +84,7 @@ render(){
       onItemAdded={this.addItem}
       />
     </div>
+    </>
   );
 };
 };
