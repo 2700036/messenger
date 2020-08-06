@@ -1,4 +1,4 @@
-export let maxId = 0;
+let maxId = 0;
 
 export const themesData = {
     'stuff-to-do': [

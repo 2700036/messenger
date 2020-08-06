@@ -26,7 +26,7 @@ export default class Message extends Component{
         </button>      
         <button type="button"
                 className="btn btn-sm float-right"
-                onClick={this.props.onToggleImportant}
+                onClick={this.props.onEditMessage}
                 >
           <i className="fa fa-pencil-square-o" />
         </button>
