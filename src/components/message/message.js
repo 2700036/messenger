@@ -6,15 +6,19 @@ export default class Message extends Component{
  
   render(){
     const {label, date, authorName, isUsersMessage} = this.props;       
-    if (isUsersMessage){
+    
     return (
-      <li className='message message_users'>      
+      <li className={`message ${isUsersMessage ? `message_users` : ''}`}>      
         <div className="message-list-item-label">
-          <div className='message__info message__info_users'>          
+          <div className={`message__info ${isUsersMessage ? `message__info_users` : ''}`}
+          >
+            {!isUsersMessage ? <span className='message__user-name'>{authorName}</span> : null}          
           <span className='message__date'>{date}</span>
           </div>          
           <span className='message__text'>{label}</span>          
-        </div>  
+        </div> 
+        {isUsersMessage ? (
+        <>
         <button type="button"
                 className="btn btn-sm float-right "
                 onClick={this.props.onDeleted}>
@@ -26,21 +30,10 @@ export default class Message extends Component{
                 >
           <i className="fa fa-pencil-square-o" />
         </button>
+        </>
+        ) : null}
       </li>
-    )} else {
-      return (
-        <li className='message'>      
-          <div className="message-list-item-label">
-            <div className='message__info'>
-            <span className='message__user-name'>{authorName}</span>
-            <span className='message__date'>{date}</span>
-            </div>          
-            <span className='message__text'>{label}</span>          
-          </div>          
-        </li>
-      )
-    }
-
+    )  
   }
 
 }

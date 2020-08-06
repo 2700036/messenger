@@ -6,7 +6,7 @@ import ThemesList from '../ThemesList/ThemesList';
 import ItemAddForm from '../item-add-form/item-add-form';
 
 import './app.css';
-import { themesData } from '../../data';
+import { themesData, maxId } from '../../data';
 
 
 export default class App extends Component { 
@@ -18,35 +18,29 @@ export default class App extends Component {
   }; 
 
   componentDidMount(){
-    this.setState({themes: themesData[this.state.currentTheme]})
+    this.setState({themes: {...themesData}})
    
-    console.log(this.state);
-  }
-  componentWillUpdate(){
-    console.log(this.state.themes);
   }
 
-  createNewItem (label){
-    return {
-    label, important: false, done: false, id: this.maxId++
-  }
-  }
+
   deleteItem = (id) => {
     this.setState(({themes})=>{
-      const ind = themes.findIndex(el => el.id === id);
+      const ind = themes[this.state.currentTheme].findIndex(el => el.id === id);
+      themes[this.state.currentTheme] = [...themes[this.state.currentTheme].slice(0, ind), ...themes[this.state.currentTheme].slice(ind+1)];
+      
       return {
-        themes: [...themes.slice(0, ind), ...themes.slice(ind+1)]
+        themes
       }
     })
   }
   addItem = (text) => {
     const newItem = {
-      label: text, important: false, id: this.maxId++   
+      label: text, id: Math.random()*100, authorId: '768fghz', authorName: 'Саша', date: `${new Date()}`.slice(0,24)   
     }
-    this.setState(({themes})=>{
-      const newArr = [...themes, newItem];
+    this.setState(({themes})=>{      
+      themes[this.state.currentTheme] = [...themes[this.state.currentTheme], newItem]
       return {
-        themes: newArr
+        themes
       }
     });    
   }  
@@ -64,7 +58,8 @@ export default class App extends Component {
   
 
 render(){  
-  const visibleItems = this.search(this.state.themes, this.state.searchWord);
+  
+  const visibleItems = this.search(this.state.themes[this.state.currentTheme], this.state.searchWord);
 
   return (
     <>
@@ -75,10 +70,10 @@ render(){
         <SearchPanel onSearchInput={this.onSearchInput}/>
         
       </div>
-      <MessageList todos={visibleItems} 
+      {this.state.themes[this.state.currentTheme] && <MessageList todos={visibleItems} 
       onDeleted={this.deleteItem}
       onToggleImportant={this.onToggleImportant}      
-      />
+      />}
       <ItemAddForm 
       onItemAdded={this.addItem}
       />
