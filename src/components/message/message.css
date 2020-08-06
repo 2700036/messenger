@@ -9,7 +9,7 @@
     padding-left: 1.5rem;
     border-top-left-radius: 0;
     position: relative;
-    display: flex;
+    /* display: flex; */
 }
 
 .message_users {  
@@ -20,7 +20,8 @@
 }
 
 .message button {
-  width: 35px;
+  width: 30px;
+  height: 30px;
   margin: 3px;
   border-radius: 50px;
 }

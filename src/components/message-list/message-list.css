@@ -1,4 +1,17 @@
 .message-list  {
   padding: .25rem .75rem;
+  overflow: auto;
+  
+}
+
+.message-list::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 50px;
+  
+}
+.message-list::-webkit-scrollbar-thumb {
+  background-color: rgba(68, 68, 68, 0.2);
+  border-radius: .5rem;
   
 }

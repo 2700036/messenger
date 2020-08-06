@@ -5,27 +5,26 @@ import MessageList from '../message-list/message-list';
 import ThemesList from '../ThemesList/ThemesList';
 import ItemAddForm from '../item-add-form/item-add-form';
 
-
 import './app.css';
+import { themesData } from '../../data';
 
 
-export default class App extends Component {
-  maxId= 100;
+export default class App extends Component { 
 
   state = {
-    todoData: [
-      {
-        label: 'Drink Coffee', id: this.maxId++, authorId: '345tgkd', authorName: 'Алёша', date: '20 июля 2020 16:38'
-      },
-      {
-        label: 'Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome Make Awesome App', id: this.maxId++, authorId: '768fghz', authorName: 'Саша', date: '20 июля 2020 16:38'
-      },
-      {
-        label: 'Have a lunch', id: this.maxId++, authorId: '345tgkd', authorName: 'Алёша', date: '20 июля 2020 16:38'
-      },      
-    ],
+    themes: [],
+    currentTheme: 'flood-flood',
     searchWord: '',    
   }; 
+
+  componentDidMount(){
+    this.setState({themes: themesData[this.state.currentTheme]})
+   
+    console.log(this.state);
+  }
+  componentWillUpdate(){
+    console.log(this.state.themes);
+  }
 
   createNewItem (label){
     return {
@@ -33,10 +32,10 @@ export default class App extends Component {
   }
   }
   deleteItem = (id) => {
-    this.setState(({todoData})=>{
-      const ind = todoData.findIndex(el => el.id === id);
+    this.setState(({themes})=>{
+      const ind = themes.findIndex(el => el.id === id);
       return {
-        todoData: [...todoData.slice(0, ind), ...todoData.slice(ind+1)]
+        themes: [...themes.slice(0, ind), ...themes.slice(ind+1)]
       }
     })
   }
@@ -44,10 +43,10 @@ export default class App extends Component {
     const newItem = {
       label: text, important: false, id: this.maxId++   
     }
-    this.setState(({todoData})=>{
-      const newArr = [...todoData, newItem];
+    this.setState(({themes})=>{
+      const newArr = [...themes, newItem];
       return {
-        todoData: newArr
+        themes: newArr
       }
     });    
   }  
@@ -65,7 +64,7 @@ export default class App extends Component {
   
 
 render(){  
-  const visibleItems = this.search(this.state.todoData, this.state.searchWord);
+  const visibleItems = this.search(this.state.themes, this.state.searchWord);
 
   return (
     <>

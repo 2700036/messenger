@@ -16,16 +16,16 @@ export default class Message extends Component{
           <span className='message__text'>{label}</span>          
         </div>  
         <button type="button"
+                className="btn btn-sm float-right "
+                onClick={this.props.onDeleted}>
+          <i className="fa fa-trash-o" />
+        </button>      
+        <button type="button"
                 className="btn btn-sm float-right"
                 onClick={this.props.onToggleImportant}
                 >
           <i className="fa fa-pencil-square-o" />
         </button>
-        <button type="button"
-                className="btn btn-outline-danger btn-sm float-right"
-                onClick={this.props.onDeleted}>
-          <i className="fa fa-trash-o" />
-        </button>      
       </li>
     )} else {
       return (

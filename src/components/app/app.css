@@ -1,15 +1,18 @@
 #root {
   display: flex;
   min-width: 750px;
+  height: 100vh;
 }
 
 .messenger-app {
   margin: 2rem auto;
-    max-width: 70%;
+  padding: 25px;
   width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .top-panel {
   margin: 1rem 0;
 }
-
