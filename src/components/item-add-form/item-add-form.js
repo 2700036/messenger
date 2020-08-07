@@ -31,8 +31,7 @@ export default class ItemAddForm extends Component {
     this.setState(({label})=>{
       return {
       label: value
-      }
-      debugger
+      }      
     })    
   }
   

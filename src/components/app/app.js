@@ -4,6 +4,8 @@ import SearchPanel from '../search-panel/search-panel';
 import MessageList from '../message-list/message-list';
 import ThemesList from '../ThemesList/ThemesList';
 import ItemAddForm from '../item-add-form/item-add-form';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 import './app.css';
 import { themesData, } from '../../data';
@@ -13,7 +15,7 @@ export default class App extends Component {
 
   state = {
     themes: [],
-    currentTheme: 'flood-flood',
+    currentTheme: null,
     searchWord: '',
     isInputSearchMode: true,
     messageText: '',
@@ -25,7 +27,8 @@ export default class App extends Component {
     this.setState({themes: {...themesData}})   
   }
   componentDidUpdate(){
-    document.querySelector('.message-list').scrollTop += 1000;
+    if (document.querySelector('.message-list')) {
+      document.querySelector('.message-list').scrollTop += 1000};
   }
 
   deleteItem = (id) => {
@@ -40,7 +43,7 @@ export default class App extends Component {
   }
   addItem = (text) => {
     const newItem = {
-      label: text, id: Math.random()*100, authorId: '768fghz', authorName: 'Саша', date: `${new Date()}`.slice(0,24)   
+      label: text, id: Math.random()*100, authorId: '768fghz', authorName: 'Саша', date: `${new Date()}`.slice(4,21)   
     }
     this.setState(({themes})=>{      
       themes[this.state.currentTheme] = [...themes[this.state.currentTheme], newItem]
@@ -81,23 +84,29 @@ export default class App extends Component {
       
   })
 }
-  
- 
-  
+changeCurrentTheme = (theme) => {
+  this.setState({currentTheme: theme})
+}  
 
 render(){  
-  const {themes, searchWord, isInputSearchMode, messageText} = this.state
-  const visibleItems = this.search(themes[this.state.currentTheme], searchWord);
+  const {themes, searchWord, currentTheme, isInputSearchMode, messageText} = this.state
+  const visibleItems = this.search(themes[currentTheme], searchWord);
 
   return (
     <>
-    <ThemesList />    
+    <Router>
+    <ThemesList themes={Object.keys(themes)} 
+    currentTheme={currentTheme}
+    changeCurrentTheme={this.changeCurrentTheme}
+    /> 
+    {!currentTheme ? <p>123</p> :
+    (<Route path='/:id'>
     <div className="messenger-app">
-      <AppHeader  />
+      <AppHeader chatHeader={currentTheme} />
       <div className="top-panel d-flex">
         <SearchPanel onSearchInput={this.onSearchInput} />
       </div>
-      {this.state.themes[this.state.currentTheme] && 
+      {this.state.themes[currentTheme] && 
       <MessageList 
       items={visibleItems} 
       onDeleted={this.deleteItem}
@@ -112,6 +121,9 @@ render(){
       
       />
     </div>
+    </Route>
+    )}
+    </Router>
     </>
   );
 };
