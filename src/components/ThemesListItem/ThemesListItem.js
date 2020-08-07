@@ -2,9 +2,9 @@ import React from 'react';
 import './themes-list-item.css';
 import { Link } from 'react-router-dom'
 
-const ThemesListItem = ({name, isActive, onClick}) => {
+const ThemesListItem = ({name, isActive}) => {
 
-    return <li onClick={onClick} className={`themes-list-item ${isActive ? 'themes-list-item_active' : null}`}>
+    return <li className={`themes-list-item ${isActive ? 'themes-list-item_active' : null}`}>
         <Link to={`/${name}`}>{name}</Link>
         </li>
 }

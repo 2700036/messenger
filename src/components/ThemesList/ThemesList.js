@@ -4,15 +4,12 @@ import ThemesListItem from '../ThemesListItem/ThemesListItem';
 
 import './themes-list.css';
 
-const ThemesList = ({themes, currentTheme, changeCurrentTheme}) => {
+const ThemesList = ({themes, currentTheme = null}) => {
   const elements = themes.map((name, i) => {
     return <ThemesListItem key={name+i} 
     name={name} 
     isActive={currentTheme === name}
-    onClick={(e)=>{
-      e.preventDefault();
-      changeCurrentTheme(name);
-    }}
+    
     />
   })
 
