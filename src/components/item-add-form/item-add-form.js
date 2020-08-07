@@ -40,8 +40,8 @@ export default class ItemAddForm extends Component {
     const {isInputSearchMode} = this.props;   
     return (
     <form className="item-add-form d-flex"
+          onSubmit={isInputSearchMode ? this.onSubmit : this.onEdit} 
           >
-
       <input type='text'
             className='form-control'
             onChange={this.onLabelChange}

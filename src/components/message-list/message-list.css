@@ -5,13 +5,22 @@
 }
 
 .message-list::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   background-color: rgb(240, 240, 240);
   border-radius: 50px;
+  visibility: hidden;
   
+}
+.message-list:hover::-webkit-scrollbar {  
+  visibility: visible;
 }
 .message-list::-webkit-scrollbar-thumb {
   background-color: rgba(68, 68, 68, 0.2);
   border-radius: .5rem;
+  visibility: hidden;
+  
+}
+.message-list:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
   
 }
