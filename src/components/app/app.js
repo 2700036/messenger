@@ -24,6 +24,9 @@ export default class App extends Component {
   componentDidMount(){
     this.setState({themes: {...themesData}})   
   }
+  componentDidUpdate(){
+    document.querySelector('.message-list').scrollTop += 1000;
+  }
 
   deleteItem = (id) => {
     this.setState(({themes})=>{
@@ -94,7 +97,8 @@ render(){
       <div className="top-panel d-flex">
         <SearchPanel onSearchInput={this.onSearchInput} />
       </div>
-      {this.state.themes[this.state.currentTheme] && <MessageList 
+      {this.state.themes[this.state.currentTheme] && 
+      <MessageList 
       items={visibleItems} 
       onDeleted={this.deleteItem}
       onEditMessage={this.onEditMessage}      

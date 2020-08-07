@@ -37,7 +37,7 @@ export default class ItemAddForm extends Component {
   }
   
   render(){ 
-    const {isInputSearchMode, editMessage} = this.props;   
+    const {isInputSearchMode} = this.props;   
     return (
     <form className="item-add-form d-flex"
           >
