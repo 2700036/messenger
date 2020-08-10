@@ -1,3 +1,8 @@
+## Небольшая реализация мессенджера (чата)
+
+Доступно 2 темы. Реализовано сохарнение диалогов при переходе между темами, поиск по сообщениям в теме, редактирование и удаление сообщений.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
