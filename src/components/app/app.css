@@ -16,6 +16,13 @@
 .top-panel {
   margin: 1rem 0;
 }
+
+.theme-select{
+  margin: auto;
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+}
+
 a {
   text-decoration: none;
 }

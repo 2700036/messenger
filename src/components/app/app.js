@@ -24,8 +24,7 @@ export default class App extends Component {
 
   componentDidMount(){    
     if (!localStorage.length){
-      this.setState({themes: {...themesData}});
-      this.updateLocalStorage();
+      this.setState({themes: {...themesData}});      
     }  else {
       this.setState({themes: JSON.parse( localStorage.themes )})
     }
@@ -93,6 +92,7 @@ render(){
     <Router>    
     <Route path='/' exact>
     <ThemesList themes={Object.keys(themes)} /> 
+    <p className='theme-select'>Выберите тему из списка</p>
     </Route>
     <Route path='/:id' render={({match})=>{
       const currentTheme = match.params.id;
