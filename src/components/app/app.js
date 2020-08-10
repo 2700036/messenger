@@ -24,9 +24,11 @@ export default class App extends Component {
 
   componentDidMount(){    
     if (!localStorage.length){
-      this.setState({themes: {...themesData}});      
+      this.setState({themes: {...themesData}});
+      console.log('нет локал сторадж');      
     }  else {
       this.setState({themes: JSON.parse( localStorage.themes )})
+      console.log('парсим');
     }
   }
 
@@ -90,11 +92,11 @@ render(){
   return (
     <>
     <Router>    
-    <Route path='/' exact>
+    <Route path='/messenger/' exact>
     <ThemesList themes={Object.keys(themes)} /> 
     <p className='theme-select'>Выберите тему из списка</p>
     </Route>
-    <Route path='/:id' render={({match})=>{
+    <Route path='/messenger/:id' render={({match})=>{
       const currentTheme = match.params.id;
       return (
         <>
