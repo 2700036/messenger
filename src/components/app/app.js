@@ -92,11 +92,11 @@ render(){
   return (
     <>
     <Router>    
-    <Route path='/messenger/' exact>
+    <Route path='/' exact>
     <ThemesList themes={Object.keys(themes)} /> 
     <p className='theme-select'>Выберите тему из списка</p>
     </Route>
-    <Route path='/messenger/:id' render={({match})=>{
+    <Route path='/:id' render={({match})=>{
       const currentTheme = match.params.id;
       return (
         <>
