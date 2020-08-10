@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/messenger/static/css/main.31935650.chunk.css",
-    "main.js": "/messenger/static/js/main.049191be.chunk.js",
-    "main.js.map": "/messenger/static/js/main.049191be.chunk.js.map",
-    "runtime-main.js": "/messenger/static/js/runtime-main.33ac3545.js",
-    "runtime-main.js.map": "/messenger/static/js/runtime-main.33ac3545.js.map",
-    "static/js/2.69fc0e10.chunk.js": "/messenger/static/js/2.69fc0e10.chunk.js",
-    "static/js/2.69fc0e10.chunk.js.map": "/messenger/static/js/2.69fc0e10.chunk.js.map",
-    "index.html": "/messenger/index.html",
-    "precache-manifest.f808d57dd5702474706f2131fb009dc9.js": "/messenger/precache-manifest.f808d57dd5702474706f2131fb009dc9.js",
-    "service-worker.js": "/messenger/service-worker.js",
-    "static/css/main.31935650.chunk.css.map": "/messenger/static/css/main.31935650.chunk.css.map",
-    "static/js/2.69fc0e10.chunk.js.LICENSE.txt": "/messenger/static/js/2.69fc0e10.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.31935650.chunk.css",
+    "main.js": "/static/js/main.049191be.chunk.js",
+    "main.js.map": "/static/js/main.049191be.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.98bec8e4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.98bec8e4.js.map",
+    "static/js/2.69fc0e10.chunk.js": "/static/js/2.69fc0e10.chunk.js",
+    "static/js/2.69fc0e10.chunk.js.map": "/static/js/2.69fc0e10.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9b754c6b6ccb9d713a7e27ca28370208.js": "/precache-manifest.9b754c6b6ccb9d713a7e27ca28370208.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.31935650.chunk.css.map": "/static/css/main.31935650.chunk.css.map",
+    "static/js/2.69fc0e10.chunk.js.LICENSE.txt": "/static/js/2.69fc0e10.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.33ac3545.js",
+    "static/js/runtime-main.98bec8e4.js",
     "static/js/2.69fc0e10.chunk.js",
     "static/css/main.31935650.chunk.css",
     "static/js/main.049191be.chunk.js"
