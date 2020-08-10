@@ -1,10 +1,13 @@
-import React from 'react';
-
+import React, {useEffect} from 'react';
 import Message from '../message/message';
 import './message-list.css';
 
-
 const MessageList = ({ items, onDeleted, onEditMessage}) => {
+  useEffect(() => {
+    if (document.querySelector('.message-list')) {
+      document.querySelector('.message-list').scrollTop += 10000};
+   
+  })
 
   const elements = items.map((item) => {
     const { id, authorId, ...itemProps } = item;    

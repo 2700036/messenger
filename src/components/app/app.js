@@ -5,37 +5,37 @@ import MessageList from '../message-list/message-list';
 import ThemesList from '../ThemesList/ThemesList';
 import ItemAddForm from '../item-add-form/item-add-form';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-
-import './app.css';
 import { themesData, } from '../../data';
 
+import './app.css';
 
 export default class App extends Component { 
-
   state = {
-    themes: [],
-    
+    themes: [],    
     searchWord: '',
     isInputSearchMode: true,
-    messageText: '',
-    
+    messageText: '',    
     idOfEditMessage: 0    
   }; 
 
-  componentDidMount(){
-    this.setState({themes: {...themesData}})   
+  updateLocalStorage = () => {
+    localStorage.themes = JSON.stringify(this.state.themes)
   }
-  componentDidUpdate(){
-    if (document.querySelector('.message-list')) {
-      document.querySelector('.message-list').scrollTop += 1000};
+
+  componentDidMount(){    
+    if (!localStorage.length){
+      this.setState({themes: {...themesData}});
+      this.updateLocalStorage();
+    }  else {
+      this.setState({themes: JSON.parse( localStorage.themes )})
+    }
   }
 
   deleteItem = (id, currentTheme) => {
     this.setState(({themes})=>{
       const ind = themes[currentTheme].findIndex(el => el.id === id);
       themes[currentTheme] = [...themes[currentTheme].slice(0, ind), ...themes[currentTheme].slice(ind+1)];
-      
+      this.updateLocalStorage();
       return {
         themes
       }
@@ -46,7 +46,8 @@ export default class App extends Component {
       label: text, id: Math.random()*100, authorId: '768fghz', authorName: 'Саша', date: `${new Date()}`.slice(4,21)   
     }
     this.setState(({themes})=>{      
-      themes[currentTheme] = [...themes[currentTheme], newItem]
+      themes[currentTheme] = [...themes[currentTheme], newItem];
+      this.updateLocalStorage();
       return {
         themes
       }
@@ -73,64 +74,55 @@ export default class App extends Component {
   changeMessage = (text, currentTheme) => {
     this.setState(({themes})=>{
       const newThemes = {...themes};
-      debugger;
-      const ind = newThemes[currentTheme].findIndex(el => el.id === this.state.idOfEditMessage);  
-      debugger;
+      const ind = newThemes[currentTheme].findIndex(el => el.id === this.state.idOfEditMessage); 
       const newMessage = newThemes[currentTheme].find(({id})=> id === this.state.idOfEditMessage);
       newMessage.label = text;
       newThemes[currentTheme] = [...themes[currentTheme].slice(0, ind), newMessage, ...themes[currentTheme].slice(ind+1)];
-      
+      this.updateLocalStorage();
       return {
         themes: newThemes
-      }
-      
+      }      
   })
 }
 
-
 render(){  
-  const {themes, searchWord, isInputSearchMode, messageText} = this.state
-  
+  const {themes, searchWord, isInputSearchMode, messageText} = this.state;  
 
   return (
     <>
-    <Router>
-    
+    <Router>    
     <Route path='/' exact>
-      <ThemesList themes={Object.keys(themes)} /> 
+    <ThemesList themes={Object.keys(themes)} /> 
     </Route>
     <Route path='/:id' render={({match})=>{
       const currentTheme = match.params.id;
-      console.log(currentTheme);
       return (
         <>
         <ThemesList themes={Object.keys(themes)} 
-    currentTheme={currentTheme}
-    
-    /> 
+        currentTheme={currentTheme}    
+        /> 
         <div className="messenger-app">
-      <AppHeader chatHeader={currentTheme} />
-      <div className="top-panel d-flex">
+        <AppHeader chatHeader={currentTheme} />
+        <div className="top-panel d-flex">
         <SearchPanel onSearchInput={this.onSearchInput} />
-      </div>
-      {this.state.themes[currentTheme] && 
-      <MessageList 
-      items={this.search(themes[currentTheme], searchWord)} 
-      onDeleted={(id)=>this.deleteItem(id, currentTheme)}
-      onEditMessage={this.onEditMessage}      
-      />}
-      <ItemAddForm 
-      onItemAdded={(text)=>this.addItem(text, currentTheme)}
-      changeInputsMode={this.changeInputsMode}
-      changeMessage={(text)=>this.changeMessage(text, currentTheme)}
-      isInputSearchMode={isInputSearchMode}
-      messageText={messageText}      
-      />
-    </div>
-      </>)
-    }}/>
-    
-    
+        </div>
+        {this.state.themes[currentTheme] && 
+        <MessageList 
+        items={this.search(themes[currentTheme], searchWord)} 
+        onDeleted={(id)=>this.deleteItem(id, currentTheme)}
+        onEditMessage={this.onEditMessage}      
+        />}
+        <ItemAddForm 
+        onItemAdded={(text)=>this.addItem(text, currentTheme)}
+        changeInputsMode={this.changeInputsMode}
+        changeMessage={(text)=>this.changeMessage(text, currentTheme)}
+        isInputSearchMode={isInputSearchMode}
+        messageText={messageText}      
+        />
+        </div>
+        </>
+      )
+    }}/>  
     </Router>
     </>
   );
