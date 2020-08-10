@@ -24,7 +24,8 @@ export default class App extends Component {
 
   componentDidMount(){    
     if (!localStorage.length){
-      this.setState({themes: {...themesData}});  
+      this.setState({themes: {...themesData}});
+      this.updateLocalStorage();
     }  else {
       this.setState({themes: JSON.parse( localStorage.themes )})
     }
@@ -93,7 +94,7 @@ render(){
     <Route path='/' exact>
     <ThemesList themes={Object.keys(themes)} /> 
     </Route>
-    <Route path='/messenger/:id' render={({match})=>{
+    <Route path='/:id' render={({match})=>{
       const currentTheme = match.params.id;
       return (
         <>
