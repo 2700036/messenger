@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6292e76e83d87f8f49ec12b34791642b",
+    "revision": "bcbbeaeead59d29891b0ed2e51a65ff2",
     "url": "/messenger/index.html"
   },
   {
-    "revision": "7d2fc3fe6045cc9fe069",
-    "url": "/messenger/static/css/main.a5437bdb.chunk.css"
+    "revision": "e6c4a3f6f3bd26833133",
+    "url": "/messenger/static/css/main.31935650.chunk.css"
   },
   {
     "revision": "afe91160c9162063c5df",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/messenger/static/js/2.69fc0e10.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7d2fc3fe6045cc9fe069",
-    "url": "/messenger/static/js/main.50340535.chunk.js"
+    "revision": "e6c4a3f6f3bd26833133",
+    "url": "/messenger/static/js/main.049191be.chunk.js"
   },
   {
     "revision": "dbe8fbb5e17e6d4cdb53",
